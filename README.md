@@ -39,8 +39,8 @@ bike-sharing-analysis/
 ├── dashboard/                 
 │   ├── clean_day.csv          # Cleaned dataset for daily bike rentals
 │   ├── clean_hour.csv         # Cleaned dataset for hourly bike rentals
-│   ├── logo.png               # Logo image for the dashboard
-│   └── dashboard.py           # Streamlit dashboard
+│   ├── dashboard.py           # Streamlit dashboard
+│   └── logo.png               # Logo image for the dashboard
 │
 ├── data/
 │   ├── day.csv                # Original dataset for daily bike rentals
