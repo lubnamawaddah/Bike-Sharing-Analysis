@@ -40,14 +40,14 @@ bike-sharing-analysis/
 │   ├── clean_day.csv          # Cleaned dataset for daily bike rentals
 │   ├── clean_hour.csv         # Cleaned dataset for hourly bike rentals
 │   ├── logo.png               # Logo image for the dashboard
-│   └── app.py                 # Streamlit app for the dashboard
+│   └── dashboard.py           # Streamlit dashboard
 │
 ├── data/
 │   ├── day.csv                # Original dataset for daily bike rentals
 │   ├── hour.csv               # Original dataset for hourly bike rentals
 │   └── Readme.txt             # Additional information about the datasets
 │
-├── notebook.ipynb             # Jupyter notebook for exploratory analysis.
+├── notebook.ipynb             # Jupyter notebook for exploratory analysis
 ├── requirements.txt           # File for package dependencies
 ├── url.txt                    # Contains the link to the deployed Streamlit app
 └── README.md                  # Project README file
