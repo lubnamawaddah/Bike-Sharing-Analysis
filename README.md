@@ -8,11 +8,6 @@ This repository contains the final project of the "Belajar Analisis Data dengan 
 - Data Visualization
 - Dashboard creation using Streamlit
 
-## Installation
-To run this project, please install the required libraries by using:
-```bash
-pip install -r requirements.txt
-
 ## Project Installation
 1. **Clone this repository**
      ```bash
