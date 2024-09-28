@@ -14,7 +14,7 @@ max_date = day_df["date"].max()
 
 with st.sidebar:
     # Menambahkan logo
-    st.image("https://github.com/dicodingacademy/assets/raw/main/logo.png")
+    st.image("https://raw.githubusercontent.com/lubnamawaddah/Bike-Sharing-Analysis/main/dashboard/logo.png")
     
     # Mengambil start_date & end_date dari date_input
     start_date, end_date = st.date_input(
@@ -23,13 +23,16 @@ with st.sidebar:
         value=[min_date, max_date]
     )
 
-# Menghitung total bike sharing, total casual users, dan total registered users
-total_bike_sharing = day_df['casual'].sum() + day_df['registered'].sum()
-total_casual_users = day_df['casual'].sum()
-total_registered_users = day_df['registered'].sum()
+# Filter data berdasarkan rentang tanggal yang dipilih
+filtered_day_df = day_df[(day_df['date'] >= pd.to_datetime(start_date)) & (day_df['date'] <= pd.to_datetime(end_date))]
 
 # Menambahkan judul pada dashboard
 st.title('Bike Rental Dashboard')
+
+# Menghitung total bike sharing, total casual users, dan total registered users
+total_bike_sharing = filtered_day_df['casual'].sum() + filtered_day_df['registered'].sum()
+total_casual_users = filtered_day_df['casual'].sum()
+total_registered_users = filtered_day_df['registered'].sum()
 
 # Membuat 3 kolom
 col1, col2, col3 = st.columns(3)
@@ -66,7 +69,7 @@ st.markdown("---")
 
 # Total rental berdasarkan musim
 st.subheader("Total Rentals per Season")
-seasonal_data = day_df.groupby('season')['count'].sum().reset_index()
+seasonal_data = filtered_day_df.groupby('season')['count'].sum().reset_index()
 fig, ax = plt.subplots(figsize=(20, 10))
 colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 sns.barplot(x='count', y='season', data=seasonal_data.sort_values(by='count', ascending=False), palette=colors, ax=ax)
@@ -81,7 +84,7 @@ st.markdown("---")
 
 # Total rental berdasarkan kondisi cuaca
 st.subheader("Rental Count by Weather Conditions")
-weather_data = day_df.groupby('weather')['count'].sum().reset_index()
+weather_data = filtered_day_df.groupby('weather')['count'].sum().reset_index()
 fig, ax = plt.subplots(figsize=(20, 10))
 colors = ["#90CAF9", "#D3D3D3", "#D3D3D3"]
 sns.barplot(y="count", x="weather", data=weather_data.sort_values(by="count", ascending=False), palette=colors, ax=ax)
@@ -98,7 +101,7 @@ st.markdown("---")
 
 # Total rental berdasarkan holiday
 st.subheader("Rentals on Holidays")
-holiday_data = day_df.groupby('holiday')['count'].sum().reset_index()
+holiday_data = filtered_day_df.groupby('holiday')['count'].sum().reset_index()
 fig, ax = plt.subplots(figsize=(20, 10))
 colors = ["#90CAF9", "#D3D3D3"]
 sns.barplot(y="count", x="holiday", data=holiday_data.sort_values(by="count", ascending=False), palette=colors, ax=ax)
@@ -115,7 +118,7 @@ st.markdown("---")
 
 # Total rental berdasarkan workingday
 st.subheader("Rentals on Working Days")
-workingday_data = day_df.groupby('workingday')['count'].sum().reset_index()
+workingday_data = filtered_day_df.groupby('workingday')['count'].sum().reset_index()
 fig, ax = plt.subplots(figsize=(20, 10))
 colors = ["#D3D3D3", "#90CAF9"]
 sns.barplot(y="count", x="workingday", data=workingday_data.sort_values(by="count", ascending=False), palette=colors, ax=ax)
@@ -132,7 +135,7 @@ st.markdown("---")
 
 # Total rental berdasarkan hari dalam seminggu
 st.subheader("Rentals by Day of the Week")
-weekday_data = day_df.groupby('weekday')['count'].sum().reset_index()
+weekday_data = filtered_day_df.groupby('weekday')['count'].sum().reset_index()
 fig, ax = plt.subplots(figsize=(20, 10))
 colors = ["#87CEEB", "#ADD8E6", "#E0BBE4", "#FFCCCB", "#FF69B4", "#DDA0DD", "#FFDEAD"]
 sns.barplot(y="count", x="weekday", data=weekday_data, palette=colors, ax=ax)
@@ -149,14 +152,14 @@ st.markdown("---")
 
 # Total rental pengguna casual dan registered berdasarkan jenis hari
 st.subheader("Bike User Distribution Based on Day Type")
-combined_data = day_df.groupby(['day_type']).agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
+combined_data = filtered_day_df.groupby(['day_type']).agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
 fig, ax = plt.subplots(figsize=(10, 6))
 bar_width = 0.35
 x = range(len(combined_data))
 # Bar untuk pengguna casual
-bars1 = ax.bar([p - bar_width/2 for p in x], combined_data['casual'], width=bar_width, label='Casual', color='lightblue')
+bars1 = ax.bar([p - bar_width/2 for p in x], combined_data['casual'], width=bar_width, label='Casual', color='#DDA0DD')
 # Bar untuk pengguna terdaftar
-bars2 = ax.bar([p + bar_width/2 for p in x], combined_data['registered'], width=bar_width, label='Registered', color='salmon')
+bars2 = ax.bar([p + bar_width/2 for p in x], combined_data['registered'], width=bar_width, label='Registered', color='#87CEEB')
 ax.set_title('Number of Rental by Day Type', fontsize=14)
 ax.set_xlabel(None)
 ax.set_ylabel(None)
