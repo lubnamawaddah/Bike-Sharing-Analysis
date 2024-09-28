@@ -3,7 +3,7 @@
 This repository contains the final project of the "Belajar Analisis Data dengan Python" course from Dicoding. This project focuses on data analysis and dashboard creation using a bike sharing dataset.
 
 ## Streamlit Link
-[https://dashboard-bike-rentals.streamlit.app/](url)
+https://dashboard-bike-rentals.streamlit.app/
 
 ## Project Work Stages
 - Data Wrangling
@@ -49,6 +49,6 @@ bike-sharing-analysis/
 │
 ├── notebook.ipynb             # Jupyter notebook for exploratory analysis.
 ├── requirements.txt           # File for package dependencies
-├── README.md                  # Project README file
-└── url.txt                    # Contains the link to the deployed Streamlit app
+├── url.txt                    # Contains the link to the deployed Streamlit app
+└── README.md                  # Project README file
 ```
