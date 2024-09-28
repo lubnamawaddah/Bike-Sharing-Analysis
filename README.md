@@ -9,7 +9,7 @@ https://dashboard-bike-rentals.streamlit.app/
 - Data Wrangling
 - Exploratory Data Analysis (EDA)
 - Data Visualization
-- Dashboard creation using Streamlit
+- Dashboard development using Streamlit
 
 ## Project Installation
 1. **Clone this repository**
