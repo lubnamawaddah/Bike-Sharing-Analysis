@@ -49,6 +49,5 @@ bike-sharing-analysis/
 │
 ├── notebook.ipynb             # Jupyter notebook for exploratory analysis
 ├── requirements.txt           # File for package dependencies
-├── url.txt                    # Contains the link to the deployed Streamlit app
 └── README.md                  # Project README file
 ```
